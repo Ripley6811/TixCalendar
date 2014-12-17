@@ -14,8 +14,6 @@ uses Tkinter.
     - Solve Chinese localization month name encoding problem.
 
 :AUTHOR: Ripley6811
-:ORGANIZATION: None
-:CONTACT: python@boun.cr
 :SINCE: Tue Dec 16 16:29:56 2014
 :VERSION: 0.1
 """
@@ -23,7 +21,6 @@ uses Tkinter.
 # PROGRAM METADATA
 #===============================================================================
 __author__ = 'Ripley6811'
-__contact__ = 'python@boun.cr'
 __copyright__ = ''
 __license__ = ''
 __date__ = 'Tue Dec 16 16:29:56 2014'
