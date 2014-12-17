@@ -96,7 +96,6 @@ class Calendar(TKx.Frame):
         self._build_dategrid()
 
 
-
     def _build_calendar(self):
         # Create frame and widgets.
         # Add header.
@@ -116,8 +115,6 @@ class Calendar(TKx.Frame):
     def _set_month_str(self):
         text = u'{} {}'.format(calendar.month_name[self.month], self.year)
         self.month_str.set(text)
-
-
 
     def _build_dategrid(self):
         self._set_month_str()
@@ -159,9 +156,20 @@ class Calendar(TKx.Frame):
                 if self.sel_bg:
                     trb.config(selectcolor=self.sel_bg)
 
-    @property
-    def selection(self):
-        return self.strvar.get()
+
+    def _prev_month(self):
+        tmp = self.datetime(self.year, self.month, 1)
+        prev_month = tmp - self.timedelta(1)
+        self.year = prev_month.year
+        self.month = prev_month.month
+        self._build_dategrid()
+
+    def _next_month(self):
+        tmp = self.datetime(self.year, self.month, 25)
+        next_month = tmp + self.timedelta(10)
+        self.year = next_month.year
+        self.month = next_month.month
+        self._build_dategrid()
 
     def selection_set(self, *args):
         """Set the current selected date.
@@ -206,33 +214,46 @@ class Calendar(TKx.Frame):
                 pass
             return
 
-    def _prev_month(self):
-        tmp = self.datetime(self.year, self.month, 1)
-        prev_month = tmp - self.timedelta(1)
-        self.year = prev_month.year
-        self.month = prev_month.month
-        self._build_dategrid()
+    @property
+    def date_str(self):
+        """Get string representation of selected date.
 
-    def _next_month(self):
-        tmp = self.datetime(self.year, self.month, 25)
-        next_month = tmp + self.timedelta(10)
-        self.year = next_month.year
-        self.month = next_month.month
-        self._build_dategrid()
+        Format is YYYY-MM-DD or an empty string if nothing is selected.
+        """
+        return self.strvar.get()
 
+    @property
+    def date_obj(self):
+        """Get a datetime.date object of selected date.
+
+        Returns a datetime.date object or None if nothing is selected.
+        """
+        try:
+            return self.datetime(*[int(x) for x in self.date_str.split(u'-')])
+        except ValueError:
+            return None
 
 def test():
     import sys
     root = TKx.Tk()
     root.title('Calendar')
-    tixcal = Calendar(preweeks=6, postweeks=8)
+    tixcal = Calendar(preweeks=6, postweeks=8, day=23)
     tixcal.pack(expand=1, fill='both')
 
     if 'win' not in sys.platform:
         style = TKx.Style()
         style.theme_use('clam')
 
+    print type(tixcal.date_str), tixcal.date_str
+    print type(tixcal.date_obj), tixcal.date_obj
+
+
+    tixcal = Calendar(preweeks=6, postweeks=8)
+
+    print type(tixcal.date_str), tixcal.date_str
+    print type(tixcal.date_obj), tixcal.date_obj
     root.mainloop()
+
 
 if __name__ == '__main__':
     test()
