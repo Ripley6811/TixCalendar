@@ -52,15 +52,14 @@ class Calendar(TKx.Frame):
     def __init__(self, master=None, **kw):
         """Setup.
 
-        Date defaults to system current date.
+        Display defaults to system current month and year.
 
         Kwargs:
             year (int): Year integer for displaying year.
             month (int): Month integer for displaying month.
             day (int): Day integer used for preselecting date.
-            today (bool): Select today's date.
-            selectbackground (str): Color string for background.
-            selectforeground (str): Color string for text.
+            settoday (bool): Set selection to today.
+            selectbackground (str): Color string for selection background.
             textvariable (StringVar): Tk.StringVar for storing selection date.
             preweeks (int): Number of weeks to include before month.
             postweeks (int): Number of weeks to include after month.
@@ -73,7 +72,7 @@ class Calendar(TKx.Frame):
         self.day = kw.pop('day', None)
         self.settoday = kw.pop('settoday', False)
         self.sel_bg = kw.pop('selectbackground', 'gold')
-        self.sel_fg = kw.pop('selectforeground', 'gold')
+#        self.sel_fg = kw.pop('selectforeground', 'gold')
         self.preweeks = kw.pop('preweeks', 0)
         self.postweeks = kw.pop('postweeks', 0)
 
@@ -89,9 +88,9 @@ class Calendar(TKx.Frame):
         self._build_calendar()
 
         if self.settoday:
-            self.selection_set(today)
+            self.date_set(today)
         elif self.day:
-            self.selection_set(self.year, self.month, self.day)
+            self.date_set(self.year, self.month, self.day)
 
         self._build_dategrid()
 
@@ -113,6 +112,7 @@ class Calendar(TKx.Frame):
         self.days_frame.pack(fill='x', expand=1)
 
     def _set_month_str(self):
+        #TODO: Fix month name encoding error on Chinese system when localizing.
         text = u'{} {}'.format(calendar.month_name[self.month], self.year)
         self.month_str.set(text)
 
@@ -171,7 +171,7 @@ class Calendar(TKx.Frame):
         self.month = next_month.month
         self._build_dategrid()
 
-    def selection_set(self, *args):
+    def date_set(self, *args):
         """Set the current selected date.
 
         Args should either be a single datetime.date object or a
