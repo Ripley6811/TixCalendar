@@ -26,3 +26,8 @@ Usage:
     
     # To get a datetime.date object of the selected date access the date_obj property of Calendar.
     cal.date_obj
+
+Todo:
+
+- Fix month name encoding error when locale is on a Chinese system.
+- Add optional Tix.Balloon popup over date buttons.
