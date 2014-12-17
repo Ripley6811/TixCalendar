@@ -29,5 +29,5 @@ Usage:
 
 Todo:
 
-- Fix month name encoding error when locale is on a Chinese system.
+- Fix month name encoding error when `locale.setlocale` is ran on a Chinese system.
 - Add optional Tix.Balloon popup over date buttons.
