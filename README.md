@@ -32,3 +32,4 @@ Todo:
 
 - Fix month name encoding error when `locale.setlocale` is ran on a Chinese system.
 - Add optional Tix.Balloon popup over date buttons.
+- Add ability to select a date range when hold ctrl.
