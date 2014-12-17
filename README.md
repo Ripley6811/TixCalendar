@@ -20,7 +20,8 @@ Usage:
     cal = cal.Calendar(mainf, textvariable=date_SV, settoday=True)
     cal.pack()
     
-    # To get a string representation of a date after selection access the StringVar or the date_str property of Calendar.
+    # To get a string representation of a date after selection access the StringVar
+    # or the date_str property of Calendar.
     date_SV.get()
     cal.date_str
     
