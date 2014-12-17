@@ -7,7 +7,7 @@ Based on ttk Treeview calendar but with improvements in pre-setting date and int
 
 Can extend the length of the displayed month by prepending and appending additional weeks for display and selection.
 
-Works with a StringVar for storing the selected date. A StringVar can be passed to the Calendar as a parameter or else it creates one internally. Use `date_str` or `date_obj` to retrieve the selection from Calendar.
+Works with a StringVar for storing the selected date. A StringVar can be passed to the Calendar as a parameter or else it creates one internally. Use `date_str` or `date_obj` to retrieve the selected date from Calendar.
 
 Usage:
 
