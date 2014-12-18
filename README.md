@@ -7,6 +7,8 @@ Based on ttk Treeview calendar but with improvements in pre-setting date and int
 
 Can extend the length of the displayed month by prepending and appending additional weeks for display and selection.
 
+If `selectrange` is set to `True` then a range of dates can be selected by holding ctrl or shift or the right mouse button while clicking the left mouse button.
+
 Works with a StringVar for storing the selected date. A StringVar can be passed to the Calendar as a parameter or else it creates one internally. Use `date_str` or `date_obj` to retrieve the selected date from Calendar.
 
 Usage:
@@ -32,4 +34,3 @@ Todo:
 
 - Fix month name encoding error when `locale.setlocale` is ran on a Chinese system.
 - Add optional Tix.Balloon popup over date buttons.
-- Add ability to select a date range when hold ctrl.
