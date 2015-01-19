@@ -45,8 +45,4 @@ Todo
 ----
 
 - Fix month name encoding error when `locale.setlocale` is ran on a Chinese system.
-<<<<<<< HEAD
-=======
 - Delete only the unnecessary weeks instead of deleting all and recreating all weeks.
-- Add optional Tix.Balloon popup over date buttons.
->>>>>>> origin/master
